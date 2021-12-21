@@ -2,7 +2,7 @@ const chai = require("chai");
 const chaiHttp = require('chai-http');
 const assert = chai.assert;
 const server = require('../server');
-const puzzles = require('../controllers/puzzle-strings').puzzlesAndSolutions;
+const puzzles = require('../controllers/puzzle-strings.js').puzzlesAndSolutions;
 
 chai.use(chaiHttp);
 

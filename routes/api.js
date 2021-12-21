@@ -72,7 +72,7 @@ module.exports = function (app) {
         // If the puzzle string doesn't pass the validation inside the solver, or if the puzzle if deemed unsolvable
         return res.json({error: errors[solution]});
       }
-      return res.json({solution: solution.join('')});
+      return res.json({solution: solution});
     });
 };
 

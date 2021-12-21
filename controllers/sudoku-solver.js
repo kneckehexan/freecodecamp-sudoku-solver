@@ -97,13 +97,13 @@ class SudokuSolver {
       if(/\./g.test(solution)){
         return 'f';
       }
-      return solution;
+      return solution.join('');
     }
   }
 
   executeSolve(puzzleArray, x = 0){
     // Abort recursion on a depth of 6 and call the puzzle unsolvable, although that might not be true.
-    if(x > 6){
+    if(x > 7){
       return undefined;
     }
     let index = getNextDotIndex(puzzleArray);

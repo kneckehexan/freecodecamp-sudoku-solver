@@ -2,7 +2,7 @@ const chai = require('chai');
 const assert = chai.assert;
 
 const Solver = require('../controllers/sudoku-solver.js');
-const puzzles = require('../controllers/puzzle-strings');
+const puzzles = require('../controllers/puzzle-strings.js').puzzlesAndSolutions;
 let solver = new Solver;
 
 suite('UnitTests', () => {
@@ -43,7 +43,8 @@ suite('UnitTests', () => {
   });
   test('Test that valid puzzles pass the solver', () => {
     for(let i = 0; i < puzzles.length; i++){
-      assert.equal(solver.solve(puzzles[i][0]), puzzles[i][1], 'Solver should return the solution of valid puzzles');
+      let sol = solver.solve(puzzles[i][0]);
+      assert.equal(sol, puzzles[i][1], 'Solver should return the solution of valid puzzles');
     }
   });
   test('Test that invalid puzzles do not pass the solver', () => {
@@ -51,11 +52,12 @@ suite('UnitTests', () => {
     assert.equal(solver.solve(invalidStringLen), 'b', 'Solver should not pass an invalid puzzle string (invalid length).');
     assert.equal(solver.solve(), 'g', 'Solver should not pass an empty string');
     assert.equal(solver.solve(conflictingString), 'f', 'Solver should not pass a conflicting string');
-    assert.equal(solver.solve(noSolutionString, 2), 'f', 'Solver should not pass a string that might take too long to solve');
+    assert.equal(solver.solve(noSolutionString, 4), 'f', 'Solver should not pass a string that might take too long to solve');
   });
   test('Test that valid puzzles in solve returns a solution', () => {
     for(let i = 0; i < puzzles.length; i++){
-      assert.equal(solver.solve(puzzles[i][0]), puzzles[i][1], 'Solver should return the solution of valid puzzles');
+      var sol = solver.solve(puzzles[i][0]);
+      assert.equal(sol, puzzles[i][1], 'Solver should return the solution of valid puzzles');
     }
   });
 });
